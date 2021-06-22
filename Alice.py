@@ -30,14 +30,14 @@ def speak(text):
 def wishMe():
     hour=datetime.datetime.now().hour
     if hour>=0 and hour<12:
-        speak("Hello David,Good Morning")
-        print("Hello David,Good Morning")
+        speak("Hello Sir,Good Morning")
+        print("Hello Sir,Good Morning")
     elif hour>=12 and hour<18:
-        speak("Hello David,Good Afternoon")
-        print("Hello David,Good Afternoon")
+        speak("Hello Sir,Good Afternoon")
+        print("Hello Sir,Good Afternoon")
     else:
-        speak("Hello David,Good Evening")
-        print("Hello David,Good Evening")
+        speak("Hello Sir,Good Evening")
+        print("Hello Sir,Good Evening")
 
 def tellDay():
       
@@ -82,8 +82,8 @@ def takeCommand():
 
 wishMe()
 
-print('I am Alice, your virtual assistant.')
-speak("I am Alice, your virtual assistant.")
+print('I am Alice, your basic model virtual assistant.')
+speak("I am Alice, your basic model virtual assistant.")
 
 
 
@@ -103,14 +103,14 @@ if __name__=='__main__':
 
         if "from wikipedia" in statement:
               
-            
             speak("Checking the wikipedia ")
-            query = query.replace("wikipedia", "")
-              
+            query = statement.replace("wikipedia"," ")              
     
-            result = wikipedia.summary(statement, sentences=4)
+            result = wikipedia.summary(query, sentences=4)
             speak("According to wikipedia")
+            print(result)
             speak(result)
+            
 
         elif 'open youtube' in statement:
             webbrowser.open_new_tab("https://www.youtube.com")
@@ -128,7 +128,7 @@ if __name__=='__main__':
             time.sleep(5)
 
         elif "weather" in statement:
-            api_key="8ef61edcf1c576d65d836254e11ea420"
+            api_key="37ad0f5bd38d157032013c7dc869f3c1"
             base_url="https://api.openweathermap.org/data/2.5/weather?"
             speak("whats the city name")
             city_name=takeCommand()
@@ -164,17 +164,17 @@ if __name__=='__main__':
             speak(f"the time is {strTime}")
 
         elif 'who are you' in statement or 'what can you do' in statement:
-            print('I am Alice version 1.o a persoanal assistant created by David. I am programmed to minor tasks like'
+            print('I am Alice version 1.o a personal assistant created by Devendra or say David. I am programmed to execute minor tasks like'
                   'opening youtube,google chrome,gmail ,predict time,take a photo,search wikipedia,predict weather' 
-                  'in different cities , get top headline news from times of india and you can ask me computational or geographical questions too!')
-            speak('I am Alice version 1 point O a personal assistant created by David. I am programmed to minor tasks like'
+                  'in different cities , get top headline news from times of india and you can ask me some computational questions too!. I am happy to help you.')
+            speak('I am Alice version 1.o a personal assistant created by Devendra or say David. I am programmed to execute minor tasks like'
                   'opening youtube,google chrome,gmail ,predict time,take a photo,search wikipedia,predict weather' 
-                  'in different cities , get top headline news from times of india and you can ask me computational or geographical questions too!')
+                  'in different cities , get top headline news from times of india and you can ask me some computational questions too!. I am happy to help you.')
 
 
         elif "who made you" in statement or "who created you" in statement or "who discovered you" in statement:
-            speak("I have been created by David.")
-            print("I have been created by David.")
+            speak("I have been created by Devendra SIngh Chauhan or say David.")
+            print("I have been created by Devendra SIngh Chauhan or say David.")
 
         elif "will you be my gf" in statement or "will you be my bf" in statement:  
             speak("I'm not sure about, may be you should give me some time")
@@ -186,11 +186,11 @@ if __name__=='__main__':
             time.sleep(6)
 
         elif "camera" in statement or "take a photo" in statement:
-            ec.capture(0,"camera","img.jpg")
+            ec.ecapture(0,"Alice camera","img.jpg")
 
         elif 'search'  in statement:
             statement = statement.replace("search", "")
-            url = "https://www.google.com.tr/search?q={}".format(statement)    
+            url = "https://www.google.com.tr/search?q=".format(statement)    
             webbrowser.get(chromedir).open_new_tab(url)
             time.sleep(5)
 
@@ -208,15 +208,16 @@ if __name__=='__main__':
             tellTime()
             continue
 
-        elif 'ask' in statement:
+        elif 'do some maths' in statement or 'try some calculation' in statement or 'try some computtaional' in statement:
             speak('I can answer to computational and geographical questions and what question do you want to ask now')
             question=takeCommand()
-            app_id="R2K75H-7ELALHR35X"
-            client = wolframalpha.Client('R2K75H-7ELALHR35X')
+            app_id="E8X2QV-7T757T32XA"
+            client = wolframalpha.Client('E8X2QV-7T757T32XA')
             res = client.query(question)
             answer = next(res.results).text
-            speak(answer)
-            print(answer)
+            print("Your answer is:" +answer)
+            speak("Your answer is:" + answer)
+            
 
         
 
@@ -225,5 +226,5 @@ if __name__=='__main__':
             speak("Ok , your pc will log off in 10 sec make sure you exit from all applications")
             subprocess.call(["shutdown", "/l"])
 
-time.sleep(3)
+time.sleep(0)
 
