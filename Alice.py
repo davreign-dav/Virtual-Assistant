@@ -4,15 +4,10 @@ import datetime
 import pywhatkit
 import wikipedia
 import webbrowser
-import os
 import ecapture as ec
 import time
-import re
 import subprocess
 import wolframalpha
-import json
-import urllib.request
-import urllib
 import urllib.parse
 import requests
 chromedir= 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
@@ -62,7 +57,7 @@ def tellTime():
     print(time)
     hour = time[11:13]
     min = time[14:16]
-    speak(self, "The time is sir" + hour + "Hours and" + min + "Minutes")
+    speak("The time is sir" + hour + "Hours and" + min + "Minutes")
     
 
 def takeCommand():
@@ -73,10 +68,10 @@ def takeCommand():
 
         try:
             statement=r.recognize_google(audio,language='en-in')
-            print(f"user said:{statement}\n")
+            print(f"You said:{statement}\n")
 
         except Exception as e:
-            speak("Pardon me, please say that again")
+            speak("Pardon me, please say that again.")
             return "None"
         return statement
 
@@ -168,7 +163,7 @@ if __name__=='__main__':
                   'opening youtube,google chrome,gmail ,predict time,take a photo,search wikipedia,predict weather' 
                   'in different cities , get top headline news from times of india and you can ask me some computational questions too!. I am happy to help you.')
             speak('I am Alice version 1.o a personal assistant created by Devendra or say David. I am programmed to execute minor tasks like'
-                  'opening youtube,google chrome,gmail ,predict time,take a photo,search wikipedia,predict weather' 
+                  'opening youtube,google chrome,gmail ,predict time,take a photo,search wikipedia,predict weather.' 
                   'in different cities , get top headline news from times of india and you can ask me some computational questions too!. I am happy to help you.')
 
 
@@ -223,8 +218,15 @@ if __name__=='__main__':
 
 
         elif "log off" in statement or "sign out" in statement:
-            speak("Ok , your pc will log off in 10 sec make sure you exit from all applications")
+            speak("Ok , your pc will log off in 10 sec. Make sure you exit from all applications")
             subprocess.call(["shutdown", "/l"])
 
+        elif "shutdown" in statement:
+            speak("Ok , your pc will shutdown in 10 sec. Make sure you exit from all applications")
+            subprocess.call(["shutdown", "/s"])
+
+        elif "restart" in statement:
+            speak("Ok , your pc will restart in 10 sec. Make sure you exit from all applications")
+            subprocess.call(["shutdown", "/r"])
 time.sleep(0)
 
